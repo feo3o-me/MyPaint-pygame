@@ -17,7 +17,7 @@ HEIGTH = 480
 FPS = 75
 ROWS = 100
 COLS = 100
-PIXEL = WIDTH // COLS
+PIXEL_SIZE = WIDTH // COLS
 BACKGROUND = BLACK
 FONT = ("Courier New", 14)
 
@@ -37,8 +37,14 @@ def canvas(rows, cols, color): # the canva is a set of grids where each index is
 
     return canvas
 
+def paint(window, canvas):
+    for i, row in enumerate(canvas):
+        for j, pixel in enumerate(row):
+            pygame.draw.rect(window, pixel, (j * PIXEL_SIZE, i * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
+
 def draw(window, canvas):
     window.fill(BACKGROUND)
+    paint(window, canvas)
     pygame.display.update()
 
 # ============ #
